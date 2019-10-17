@@ -22,7 +22,6 @@ const Home = props => {
                 </TouchableOpacity>
                 ))
             }
-            <Button onPress={() => Alert.alert("Todo!")} title="Naviguer" />
             <Button onPress={logout} title="Se déconnecter" />
         </View>
     );

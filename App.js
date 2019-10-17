@@ -1,4 +1,5 @@
 import React from "react";
+import {View} from "react-native";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
@@ -8,6 +9,7 @@ import Home from "./src/components/Home";
 import Loading from "./src/components/Loading";
 import Settings from "./src/components/Settings";
 import Item from "./src/components/Item";
+import FlashMessage from "react-native-flash-message";
 
 const homeStack = createStackNavigator({
   Home,
@@ -38,4 +40,13 @@ const switchNavigator = createSwitchNavigator({
   Home: bottomTabNavigator
 });
 
-export default createAppContainer(switchNavigator);
+const App = createAppContainer(switchNavigator);
+
+const Root = props => (
+  <View style={{flex: 1}}>
+    <App />
+    <FlashMessage position="top" />
+  </View>
+);
+
+export default Root;
