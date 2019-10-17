@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const Loading = props => {
+const Settings = props => {
     return (
         <View style={{ alignItems: "center", flex: 1, justifyContent: "center" }}>
             <Text style={{ marginBottom: 32 }}>Settings...</Text>
@@ -9,4 +9,4 @@ const Loading = props => {
     );
 }
 
-export default Loading;
+export default Settings;
