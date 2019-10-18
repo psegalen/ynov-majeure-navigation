@@ -1,8 +1,11 @@
 import React from "react";
 import { View, AsyncStorage, ActivityIndicator } from "react-native";
+import { connect } from 'react-redux';
+import { storeToken } from "../data/auth/actions";
 
 const Loading = props => {
     AsyncStorage.getItem("token").then(token => {
+        props.storeToken(token);
         if (token) {
             props.navigation.navigate("Home");
         } else {
@@ -16,4 +19,12 @@ const Loading = props => {
     );
 }
 
-export default Loading;
+const mapDispatchToProps = dispatch => {
+    return {
+        storeToken: token => {
+            dispatch(storeToken(token))
+        }
+    }
+}  
+
+export default connect(null, mapDispatchToProps)(Loading);

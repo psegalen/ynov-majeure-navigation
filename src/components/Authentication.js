@@ -1,10 +1,14 @@
 import React, {useState} from "react";
-import { View, Text, Button, Alert, TouchableOpacity, TextInput, AsyncStorage } from "react-native";
+import { View, Text, Button, TouchableOpacity, TextInput, AsyncStorage } from "react-native";
+import { connect } from 'react-redux';
+import { storeToken } from "../data/auth/actions";
 
 const Authentication = props => {
     const [ isSignup, setIsSignup ] = useState(false);
     const loginOrSignup = () => {
-        AsyncStorage.setItem("token", "ok");
+        const token = "ok";
+        AsyncStorage.setItem("token", token);
+        props.storeToken(token);
         props.navigation.navigate("Home");
     }
     return (
@@ -23,4 +27,12 @@ const Authentication = props => {
     );
 }
 
-export default Authentication;
+const mapDispatchToProps = dispatch => {
+    return {
+        storeToken: token => {
+            dispatch(storeToken(token))
+        }
+    }
+}  
+
+export default connect(null, mapDispatchToProps)(Authentication);
